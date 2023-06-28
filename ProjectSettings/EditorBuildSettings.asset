@@ -8,4 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Project/LoadingScreenScene/LoadingScreen.unity
     guid: deb207dbd4b4d60409f5eacb76baa506
+  - enabled: 1
+    path: Assets/_Project/MainMenuScene/MainMenu.unity
+    guid: f0a28867218c33c4d97261ef17d88fb2
   m_configObjects: {}
