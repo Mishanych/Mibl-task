@@ -1,5 +1,6 @@
 ﻿using Core.ServiceLocator;
 using LoadingScreenScene;
+using SceneManagement;
 using UnityEngine;
 
 namespace Core.Persistent
@@ -12,6 +13,7 @@ namespace Core.Persistent
             Service serviceInstance = Service.Instance;
 
             serviceInstance.Register<ILoadingScreenService>(new LoadingScreen());
+            serviceInstance.Register<ISceneLoaderService>(new SceneLoader());
         }
     }
 }

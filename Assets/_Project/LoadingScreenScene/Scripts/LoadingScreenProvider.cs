@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using Core.ServiceLocator;
+using SceneManagement;
 using UnityEngine.UI;
 
 namespace LoadingScreenScene
@@ -15,6 +16,10 @@ namespace LoadingScreenScene
         private ILoadingScreenService _loadingScreenInstance;
         private ILoadingScreenService _loadingScreen
             => _loadingScreenInstance ??= Service.Instance.Get<ILoadingScreenService>();
+
+        private ISceneLoaderService _sceneLoaderInstance;
+        private ISceneLoaderService _sceneLoader
+            => _sceneLoaderInstance ??= Service.Instance.Get<ISceneLoaderService>();
 
         #endregion
 
@@ -35,7 +40,8 @@ namespace LoadingScreenScene
 
         private void LoadingProcessFinished()
         {
-            // TODO: enable main menu
+            _sceneLoader.SwitchSceneForward();
+            _sceneLoader.EnableSceneAfterLoading();
         }
     }
 }
