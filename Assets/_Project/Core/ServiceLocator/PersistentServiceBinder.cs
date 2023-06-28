@@ -1,4 +1,5 @@
 ﻿using Core.ServiceLocator;
+using LoadingScreenScene;
 using UnityEngine;
 
 namespace Core.Persistent
@@ -9,6 +10,8 @@ namespace Core.Persistent
         public static void RegisterServices()
         {
             Service serviceInstance = Service.Instance;
+
+            serviceInstance.Register<ILoadingScreenService>(new LoadingScreen());
         }
     }
 }
