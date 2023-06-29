@@ -2,7 +2,7 @@
 
 namespace PlayerManagement
 {
-    [CreateAssetMenu(fileName = "MoveSettingHolder", menuName = "ScriptableObjects/Settings/PlayerSettingsHolder")]
+    [CreateAssetMenu(fileName = "PlayerSettingsHolder", menuName = "ScriptableObjects/Settings/PlayerSettingsHolder")]
     public class PlayerSettingsHolder : ScriptableObject
     {
         [SerializeField] private WalkSettings _walkSettings;

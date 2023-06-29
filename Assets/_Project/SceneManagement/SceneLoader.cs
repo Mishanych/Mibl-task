@@ -5,10 +5,9 @@ namespace SceneManagement
 {
     public class SceneLoader : ISceneLoaderService
     {
-        private const int IndexOfNonExistentScene = -1;
         private const string LoadingScreenScene = "LoadingScreen";
 
-        private int _activeSceneIndex = 0;
+        private int _activeSceneIndex;
 
         public void EnableLoadingScreen()
         {

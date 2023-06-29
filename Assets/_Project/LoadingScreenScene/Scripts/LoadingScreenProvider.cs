@@ -40,7 +40,6 @@ namespace LoadingScreenScene
 
         private void LoadingProcessFinished()
         {
-            _sceneLoader.SwitchSceneForward();
             _sceneLoader.EnableSceneAfterLoading();
         }
     }
