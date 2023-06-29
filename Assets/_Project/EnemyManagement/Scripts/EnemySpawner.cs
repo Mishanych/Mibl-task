@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Factory;
 using PlayerManagement;
 using UnityEngine;
 
@@ -10,12 +11,12 @@ namespace EnemyManagement
         [SerializeField] private Player _player;
         [SerializeField] private List<Enemy> _enemies;
 
-        private EnemyFactory _enemyFactory;
+        private RandomSpawnFactory<Enemy> _enemySpawnFactory;
         private List<GameObject> _spawnedObjects = new ();
 
         private void Awake()
         {
-            _enemyFactory = new EnemyFactory();
+            _enemySpawnFactory = new EnemySpawnFactory<Enemy>();
             StartCoroutine(StartSpawningEnemies());
         }
 
@@ -25,7 +26,7 @@ namespace EnemyManagement
             {
                 foreach (Enemy enemy in _enemies)
                 {
-                    _spawnedObjects.Add(_enemyFactory.SpawnEnemy(enemy));
+                    _spawnedObjects.Add(_enemySpawnFactory.Spawn(enemy));
 
                     yield return new WaitForSeconds(enemy.EnemySettingsHolder.SpawnSettings.TimeBetweenSpawnsInSeconds);
                 }
