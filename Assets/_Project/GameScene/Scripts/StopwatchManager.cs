@@ -1,7 +1,7 @@
 ﻿using TMPro;
 using UnityEngine;
 
-namespace GameScene.Scripts
+namespace GameScene
 {
     public class StopwatchManager : MonoBehaviour
     {
