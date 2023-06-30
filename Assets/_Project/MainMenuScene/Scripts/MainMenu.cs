@@ -29,6 +29,7 @@ namespace MainMenuScene.Scripts
 
         private void StartGame()
         {
+            _sceneLoader.SwitchSceneForward();
             _sceneLoader.EnableLoadingScreen();
         }
     }

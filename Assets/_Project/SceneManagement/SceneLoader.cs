@@ -5,10 +5,10 @@ namespace SceneManagement
 {
     public class SceneLoader : ISceneLoaderService
     {
-        private const int IndexOfNonExistentScene = -1;
+        private const int IndexOfFirstScene = 0;
         private const string LoadingScreenScene = "LoadingScreen";
 
-        private int _activeSceneIndex = 0;
+        private int _activeSceneIndex;
 
         public void EnableLoadingScreen()
         {
@@ -17,6 +17,11 @@ namespace SceneManagement
 
         public void EnableSceneAfterLoading()
         {
+            if (_activeSceneIndex == IndexOfFirstScene)
+            {
+                SwitchSceneForward();
+            }
+
             string pathToScene = SceneUtility.GetScenePathByBuildIndex(_activeSceneIndex);
             string sceneName = Path.GetFileNameWithoutExtension(pathToScene);
 

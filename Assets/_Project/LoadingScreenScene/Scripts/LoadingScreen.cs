@@ -8,7 +8,15 @@ namespace LoadingScreenScene
 {
     public class LoadingScreen : ILoadingScreenService
     {
-        private const float FakeLoadDuration = 3f;
+        private const float FakeLoadDuration = 2f;
+        private const float DelayToShowCompletedProgress = 0.5f;
+        private const float MinProgressBarValue = 0f;
+        private const float MaxProgressBarValue = 1f;
+        private const float MaxPercentageValue = 100f;
+
+        private const string MinProgressPercentageText = "0%";
+        private const string MaxProgressPercentageText = "100%";
+        private const string ProgressPercentageSymbol = "%";
 
         public UnityEvent LoadingProcessFinished { get; } = new UnityEvent();
 
@@ -19,25 +27,21 @@ namespace LoadingScreenScene
             while (elapsedTime < FakeLoadDuration)
             {
                 float progress = elapsedTime / FakeLoadDuration;
-                int progressPercentage = Mathf.RoundToInt(progress * 100);
+                int progressPercentage = Mathf.RoundToInt(progress * MaxPercentageValue);
 
-                // Update the progress slider and text
                 progressBar.value = progress;
-                progressPercentageText.text = progressPercentage + "%";
+                progressPercentageText.text = progressPercentage + ProgressPercentageSymbol;
 
                 yield return null;
 
                 elapsedTime += Time.deltaTime;
             }
 
-            // Finish the loading process
-            progressBar.value = 1f;
-            progressPercentageText.text = "100%";
+            progressBar.value = MaxProgressBarValue;
+            progressPercentageText.text = MaxProgressPercentageText;
 
-            // Wait for a short delay to show the completed progress
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(DelayToShowCompletedProgress);
 
-            // Hide the progress slider and text
             progressBar.gameObject.SetActive(false);
             progressPercentageText.gameObject.SetActive(false);
 
@@ -47,8 +51,8 @@ namespace LoadingScreenScene
 
         private void ResetLoadingProgress(TMP_Text progressPercentageText, Slider progressBar)
         {
-            progressPercentageText.text = "0%";
-            progressBar.value = 0f;
+            progressPercentageText.text = MinProgressPercentageText;
+            progressBar.value = MinProgressBarValue;
         }
     }
 }
