@@ -1,7 +1,4 @@
 ﻿namespace BombManagement
 {
-    public class SimpleBomb : Bomb
-    {
-        
-    }
+    public class SimpleBomb : Bomb { }
 }

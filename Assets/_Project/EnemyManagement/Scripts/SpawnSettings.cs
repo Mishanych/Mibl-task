@@ -6,7 +6,9 @@ namespace EnemyManagement
     public class SpawnSettings : ScriptableObject
     {
         [SerializeField] private float _timeBetweenSpawnsInSeconds;
+        [SerializeField] private float _spawnedRadius;
 
         public float TimeBetweenSpawnsInSeconds => _timeBetweenSpawnsInSeconds;
+        public float SpawnedRadius => _spawnedRadius;
     }
 }

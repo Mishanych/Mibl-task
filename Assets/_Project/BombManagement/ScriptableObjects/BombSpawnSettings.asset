@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: BombSpawnSettings
   m_EditorClassIdentifier: 
   _timeBetweenSpawnsInSeconds: 7
+  _spawnedRadius: 4.5

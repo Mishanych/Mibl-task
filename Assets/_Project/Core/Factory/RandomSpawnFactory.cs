@@ -2,14 +2,14 @@
 
 namespace Factory
 {
-    public abstract class RandomSpawnFactory<T> where T : class
+    public abstract class RandomSpawnFactory<T> where T : MonoBehaviour
     {
-        public abstract GameObject Spawn(T objectToSpawn);
+        public abstract GameObject Spawn(T objectToSpawn, Vector3 planeCenter);
 
-        protected Vector3 GetRandomPositionOnPlane(Vector3 planeCenter, float spawnRadius)
+        protected Vector3 GetRandomPositionOnPlane(Vector3 planeCenter, float spawnedRadius)
         {
-            // Generate a random point within a circle on the XY plane
-            Vector2 randomPoint = Random.insideUnitCircle * spawnRadius;
+            // Generate a random point within a circle on the 2D plane
+            Vector2 randomPoint = Random.insideUnitCircle * spawnedRadius;
 
             // Calculate the random position on the plane
             Vector3 randomPosition = new Vector3(randomPoint.x, planeCenter.y, randomPoint.y);

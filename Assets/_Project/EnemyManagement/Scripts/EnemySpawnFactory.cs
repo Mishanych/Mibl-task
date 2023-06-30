@@ -3,19 +3,25 @@ using UnityEngine;
 
 namespace EnemyManagement
 {
-    public class EnemySpawnFactory<T> : RandomSpawnFactory<T> where T : Enemy
+    public class EnemySpawnFactory : RandomSpawnFactory<Enemy>
     {
         private const string DefaultEnemyName = "Enemy";
+        private const float YAxisOffset = 0.5f;
 
-        public override GameObject Spawn(T enemy)
+        public override GameObject Spawn(Enemy enemy, Vector3 planeCenter)
         {
             string enemyName = enemy.EnemySettingsHolder.EnemyName != string.Empty
                 ? enemy.EnemySettingsHolder.EnemyName
                 : DefaultEnemyName;
 
+            planeCenter = new Vector3(planeCenter.x, planeCenter.y + YAxisOffset, planeCenter.z);
+
             GameObject enemyObject = enemy.gameObject;
 
-            enemyObject = Object.Instantiate(enemyObject, GetRandomPositionOnPlane(Vector3.zero, 5f), Quaternion.identity);
+            enemyObject = Object.Instantiate(enemyObject,
+                GetRandomPositionOnPlane(planeCenter, enemy.EnemySettingsHolder.SpawnSettings.SpawnedRadius),
+                Quaternion.identity);
+
             enemyObject.name = enemyName;
 
             return enemyObject;

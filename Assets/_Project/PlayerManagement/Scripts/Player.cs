@@ -1,49 +1,46 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.Events;
 
 namespace PlayerManagement
 {
-    public class Player : MonoBehaviour
+    public class Player : IPlayerService
     {
         private const string HorizontalInputKeyWord = "Horizontal";
         private const string VerticalInputKeyWord = "Vertical";
-        private const string EnemyTag = "Enemy";
-        private const string BombTag = "Bomb";
-
-        [SerializeField] private PlayerSettingsHolder _playerSettingsHolder;
-
-        public bool IsAlive = true;
 
         private float _horizontalInput;
         private float _verticalInput;
 
-        public event Action PlayerDied;
+        public UnityEvent PlayerDied { get; } = new UnityEvent();
+        public bool IsAlive { get; private set; }
+        public Transform Transform { get; private set; }
 
-        private void Update()
+        public void MakePlayerAlive()
         {
-            GetInput();
-            Move();
+            IsAlive = true;
         }
 
-        private void OnCollisionEnter(Collision other)
+        public void SetPlayerTransform(Transform playerTransform)
         {
-            if (other.gameObject.CompareTag(EnemyTag) || other.gameObject.CompareTag(BombTag))
-            {
-                PlayerDied?.Invoke();
-                IsAlive = false;
-            }
+            Transform = playerTransform;
         }
 
-        private void GetInput()
+        public void GetInput()
         {
             _horizontalInput = Input.GetAxis(HorizontalInputKeyWord);
             _verticalInput = Input.GetAxis(VerticalInputKeyWord);
         }
 
-        private void Move()
+        public void Move(Transform player, PlayerSettingsHolder playerSettingsHolder)
         {
             Vector3 direction = new Vector3(_horizontalInput, 0f, _verticalInput);
-            transform.Translate(direction * _playerSettingsHolder.WalkSettings.Speed * Time.deltaTime);
+            player.Translate(direction * playerSettingsHolder.WalkSettings.Speed * Time.deltaTime);
+        }
+
+        public void Kill()
+        {
+            IsAlive = false;
+            PlayerDied?.Invoke();
         }
     }
 }
