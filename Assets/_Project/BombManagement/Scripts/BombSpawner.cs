@@ -39,7 +39,6 @@ namespace BombManagement
 
         private IEnumerator StartSpawningBombs()
         {
-            Debug.LogWarning(_player.IsAlive);
             while (_player.IsAlive)
             {
                 foreach (Bomb bomb in _bombs)
