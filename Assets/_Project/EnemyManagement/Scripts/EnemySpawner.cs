@@ -9,7 +9,6 @@ namespace EnemyManagement
 {
     public class EnemySpawner : MonoBehaviour
     {
-        
         [SerializeField] private Transform _plane;
         [SerializeField] private List<Enemy> _enemies;
 
@@ -24,7 +23,7 @@ namespace EnemyManagement
 
         #endregion
 
-        private void Awake()
+        private void Start()
         {
             _enemySpawnFactory = new EnemySpawnFactory();
             StartCoroutine(StartSpawningEnemies());

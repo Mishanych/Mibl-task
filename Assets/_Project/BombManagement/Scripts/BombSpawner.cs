@@ -23,7 +23,7 @@ namespace BombManagement
 
         #endregion
 
-        private void Awake()
+        private void Start()
         {
             _bombSpawnFactory = new BombSpawnFactory();
             StartCoroutine(StartSpawningBombs());
