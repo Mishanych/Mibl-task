@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0d6a879737e432c88da726b655e599f, type: 3}
   m_Name: PlayerWalkSettings
   m_EditorClassIdentifier: 
-  _speed: 3
+  _speed: 0.3
+  _rotationSpeed: 0
